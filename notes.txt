@@ -1,0 +1,9 @@
+1-15-18 at 1:07 PM
+
+File that changed:
+	views.py - upload_file method
+	fileHandler.py - new file
+	forms.py -
+	urls.py - new routing (upload file)
+	home.html - changed the action attribute from /generate/ to /upload/
+	

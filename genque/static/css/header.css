@@ -1,0 +1,65 @@
+/* For Header Navigation*/
+#register{
+	color: #f8f8f8;"
+}
+#register:hover{
+	color: #111b1b;"
+}
+.navbar{
+	padding: 0;
+	box-shadow: 1px 1px 5px #888888;
+	background-color: #efefef;
+	position: relative;
+}
+.navbar a{
+	font-family: arial;
+	color:#535353;
+}
+.nav-item a:hover{
+	color: #049e9a;
+}
+
+.nav-item{
+	padding-top: 5%;
+	padding-bottom: 5%; 
+}
+
+.home-card-icon{
+	width: auto;
+}
+.dropdown-item{
+	background-color: white;    
+}
+.dropdown-item:active{
+    color:black;
+    background: white;
+}
+.dropdown-item:hover{
+	background-color: white;
+}
+
+/* For Modal */
+.modal-title{
+	margin-top: 20px;
+	margin-bottom: 50px; 
+}
+#modalButton{
+	width: 100%;
+	height: 40px;
+	border-radius: 70px;
+	border-style: none;
+	background-image: url("../images/icons/login-bg.png");
+	background-repeat: no-repeat;
+}
+.input-group input{
+	padding: 10px;
+	border-style: none;
+	border-bottom: 2px solid #b9b9b9;
+	width: 100%;
+}.input-group span{
+	font-size: 20px;
+	border-style: none;
+	border-radius: 0;
+	background-color: white;
+	border-bottom: 2px solid #b9b9b9;
+}

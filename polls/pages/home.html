@@ -1,0 +1,157 @@
+<div data-spy="scroll" data-target="#navbar" data-offset="0">
+	<div class="home-bg-main">
+		<div class="container">
+			<h1 align="center">Generate Questions</h1>
+		</div>
+	</div>
+
+	<div id="abouts" style="padding: 3%;">
+		<div class="col-md-12">
+			<center><h1 style="color: #101818; padding-bottom: 2%;">What is GenQue?</h1></center>
+		</div>
+
+		<dl class="row" style="padding-right: 3%; padding-left: 3%;">
+			<dt class="col-md-3" style="padding: 1%; ">Description:</dt>
+			<dd class="col-md-9" style="padding: 1%; ">GenQue is a web framework created in python programing language for automated question generation. It's a free and user-friendly website.</dd>
+
+			<dt class="col-md-3" style="padding: 1%; ">Objective:</dt>
+			<dd class="col-md-9" style="padding: 1%; ">To help people to generate question automatically.</dd>
+
+			<dt class="col-md-3" style="padding: 1%; ">Algorithm:</dt>
+			<dd class="col-md-9" style="padding: 1%; ">Latent Dirichlet Allocation (LDA) - for analyzing a topic in large corpora.</dd>
+		</dl>
+		<hr> <!-- Seperating the two sections -->
+	</div>
+
+	
+
+	<div id="tutorial" class="container" style="padding: 3%; ">
+		<div class="row">
+			<div class="col-md-12" style="padding-bottom: 3%;">
+				<center><h1 style="color: #101818;">Tutorial</h1></center>
+				<center><h1 class="text-muted">User Guide</h1></center>
+
+			</div>
+
+			<div class="card col-md-2" style="margin: 40px;">
+				<div style="padding: 5%;" align="center">
+					<img class="card-img-top home-card-icon" src="http://localhost/Front/assets/images/icons/drag_icon.png">
+				</div>
+				<div role="separator" class="dropdown-divider"></div>
+				<center><label><strong>Step 1</strong></label></center>
+				<div class="card-body">
+					<p class="card-text" align="center">Insert text or drag a PDF file.</p>
+				</div>
+			</div>
+
+			<div class="card col-md-2" style="margin: 40px;">
+				<div style="padding: 5%;" align="center">
+					<img class="card-img-top home-card-icon" src="http://localhost/Front/assets/images/icons/setting_icon.png">
+				</div>
+				<div role="separator" class="dropdown-divider"></div>
+				<center><label><strong>Step 2</strong></label></center>
+				<div class="card-body">
+					<p class="card-text" align="center">Choose the type/s of question/s and input the number of items.</p>
+				</div>
+			</div>
+
+			<div class="card col-md-2" style="margin: 40px;">
+				<div style="padding: 5%;" align="center">
+					<img class="card-img-top home-card-icon" src="http://localhost/Front/assets/images/icons/generate_icon1.png">
+				</div>
+				<div role="separator" class="dropdown-divider"></div>
+				<center><label><strong>Step 3</strong></label></center>
+				<div class="card-body">
+					<p class="card-text" align="center">Click the button to generate the questions.</p>
+				</div>
+			</div>
+
+			<div class="card col-md-2" style="margin: 40px;">
+				<div style="padding: 5%;" align="center">
+					<img class="card-img-top home-card-icon" src="http://localhost/Front/assets/images/icons/print_icon.png">
+				</div>
+				<div role="separator" class="dropdown-divider"></div>
+				<center><label><strong>Step 4</strong></label></center>
+				<div class="card-body">
+					<p class="card-text" align="center">Print the generated question.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="genque" class="container-fluid" style="padding: 3%; background-color: #007c77; ">
+
+		<div class="row">
+			<div class="col-md-7" >
+				<h1>Make Questions</h1>
+				<form>
+					<div class="form-group">
+						<textarea class="form-control" placeholder="Insert Text or Drag a file." style="height: 150px;"></textarea>
+					</div>
+					<div class="form-group">
+						<input class="btn btn-success float-right" type="submit" name="submit-input" value="Generate">
+						
+					</div>
+				</form>
+				<form>
+					<label class="custom-file" style="width: 250px;">
+						<input class="custom-file-input" type="file" name="file" accept=".pdf, .doc, .docx, .txt/*">
+						<span id="upload_file" class="custom-file-control">
+
+						</span>
+					</label>
+				</form>
+			</div>
+			<div class="col-md-5">
+				<h5 align="center">Settings</h5>
+				<form>
+					<h6><strong>What kind of question/s?</strong></h6>
+					<div id="div_mcq" class="input-group" style="margin-bottom:1%; ">
+						<span class="input-group-addon">
+							<input id="cb_mcq" type="checkbox" name="checkbox" aria-label="Multiple Choice Questions" value="MCQ">
+						</span>
+						<input class="form-control" type="text" name="num" disabled="true" placeholder="Multiple Choice Questions">
+					</div>
+					<div id="text_mcq" class="input-group" style="display: none; margin-bottom: 5%;">
+						<span class="input-group-addon">
+							<label>How many items?</label>
+						</span>
+						<input class="form-control" type="text" name="text_mcq">
+					</div>
+					
+
+					<div id="div_tf" class="input-group" style="margin:1%; margin-left: 0;">
+						<span class="input-group-addon">
+							<input id="cb_tf" type="checkbox" name="checkbox" aria-label="True or False" value="TF">
+						</span>
+						<input class="form-control" type="text" name="num" disabled="true" placeholder="True or False">
+					</div>
+					<div id="text_tf" class="input-group" style="display: none ; margin-bottom: 5%;">
+
+						<span class="input-group-addon">
+							<label>How many items?</label>
+						</span>
+						<input class="form-control" type="text" name="text_tf">
+					</div>
+
+					<div id="div_finb" class="input-group" style="margin:1%; margin-left: 0;">
+						<span class="input-group-addon">
+							<input id="cb_finb" type="checkbox" name="checkbox" aria-l	abel="Fill-in-the-blank" value="FINB">
+						</span>
+						<input class="form-control" type="text" name="num" disabled="true" placeholder="Fill-in-the-blank">
+					</div>
+					<div id="text_finb" class="input-group" style="display: none ; margin-bottom: 5%;">
+						<span class="input-group-addon">
+							<label>How many items?</label>
+						</span>
+						<input class="form-control" type="text" name="text_finb">
+					</div>
+				
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+</div>

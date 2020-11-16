@@ -1,0 +1,200 @@
+{% extends "genque/header.html" %}
+{% load staticfiles %}
+{% block content %}
+<script type="text/javascript" src="{% static 'js/PDFPageCount.js'%}"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+	// Setting the checkbox functions
+	$('button[name="btn_generate"]').attr('disabled', true);
+	$('input[name="pageFrom"], input[name="pageTo"], input[name="file"]').on('keyup',function() {
+	    var pageFrom_name = $('input[name="pageFrom"]').val();
+	    var pageFrom_value = $('input[name="pageFrom"]').val();
+	    var pageTo_name = $('input[name="pageTo"]').val();
+	    var pageTo_value = $('input[name="pageTo"]').val();
+
+	   	x = document.getElementById("file").files.length
+		
+	    if(pageFrom_name != '' && pageFrom_value != '' && pageTo_name != '' && pageTo_value != '') {
+	    	if(x != 0){
+		    	if(pageFrom_value+0 > pageTo_value+0){
+			    	alert("Page from value must less than page to")
+			    	$('button[name="btn_generate"]').attr('disabled' , true);
+			    }else{
+			    	$('button[name="btn_generate"]').attr('disabled' , false);
+			    }
+		    }else if( x == 1){
+		    	$('button[name="btn_generate"]').attr('disabled' , false);
+		    }
+		    else{
+		    	alert("Upload File First")
+
+		    }
+	    }else{
+	        $('button[name="btn_generate"]').attr('disabled' , true);
+	    }
+
+	});
+
+	// Changing the text content of input file
+	$('input[type=file]').change(function(e){
+		var fileName = event.target.files[0].name; // Getting the file name of chosen file
+		if(fileName.length > 13){ // To limit the string of fileName
+			fileName = fileName.substring(0,30) + '....';
+		}
+		$('input[type=file]').append('<style>.custom-file-control:after{content:"'+fileName+'";}</style>'); // Adding a style sheet in custom-file-control:after class
+	});
+	$('.carousel').carousel({
+	  interval: 5000
+	})
+});
+</script>
+<div data-spy="scroll" data-target="#navbar" data-offset="0">
+	<div id="home-carousel" class="carousel slide" data-ride="carousel">
+		<div class="carousel-inner" role="listbox">
+			<div class="carousel-item active">
+				<img class="d-block img-fluid" src="{% static 'images/home_bg_main1.jpg'%}">
+			</div>
+			<div class="carousel-item">
+				<img class="d-block img-fluid" src="{% static 'images/home-bg-main2.jpg'%}">
+			</div>
+		</div>
+	</div>
+
+	<div id="abouts" class="container" style="padding: 3%;">
+		<div class="col-md-12">
+			<center><h1 style="color: #101818; padding-bottom: 2%;">What is GenQue?</h1></center>
+		</div>
+
+		<dl class="row" style="padding-right: 3%; padding-left: 3%;">
+			<dt class="col-md-2" style="padding: 1%; ">Description:</dt>
+			<dd class="col-md-10" style="padding: 1%; text-align: justify; ">GenQue is a web framework created in python programing language for automated question generation. It's a free and user-friendly website.</dd>
+
+			<dt class="col-md-2" style="padding: 1%; ">Objective:</dt>
+			<dd class="col-md-10" style="padding: 1%; text-align: justify; ">To help people to generate question automatically.</dd>
+
+			<dt class="col-md-2" style="padding: 1%; ">Algorithm:</dt>
+			<dd class="col-md-10" style="padding: 1%; text-align: justify; ">Latent Dirichlet Allocation (LDA) - for analyzing a topic in large corpora.</dd>
+		</dl> 
+	
+	</div>
+	<hr> <!-- Seperating the two sections -->
+	<div id="tutorial" class="container" style="padding: 3%; ">
+		<div class="row">
+			<div class="col-md-12" style="padding-bottom: 3%;">
+				<center><h1 style="color: #101818;">Tutorial</h1></center>
+				<center><h1 class="text-muted">User Guide</h1></center>
+
+			</div>
+
+			<div class="card col-md-2" style="margin: 40px;">
+				<div style="padding: 5%;" align="center">
+					<img class="card-img-top home-card-icon" src="{% static 'images/icons/drag_icon.png' %}">
+				</div>
+				<div role="separator" class="dropdown-divider"></div>
+				<center><label><strong>Step 1</strong></label></center>
+				<div class="card-body">
+					<p class="card-text" align="center">Insert text or drag a PDF file.</p>
+				</div>
+			</div>
+
+			<div class="card col-md-2" style="margin: 40px;">
+				<div style="padding: 5%;" align="center">
+					<img class="card-img-top home-card-icon" src="{% static 'images/icons/setting_icon.png' %}">
+				</div>
+				<div role="separator" class="dropdown-divider"></div>
+				<center><label><strong>Step 2</strong></label></center>
+				<div class="card-body">
+					<p class="card-text" align="center">Choose the type/s of question/s and input the number of items.</p>
+				</div>
+			</div>
+
+			<div class="card col-md-2" style="margin: 40px;">
+				<div style="padding: 5%;" align="center">
+					<img class="card-img-top home-card-icon" src="{% static 'images/icons/generate_icon.png' %}">
+				</div>
+				<div role="separator" class="dropdown-divider"></div>
+				<center><label><strong>Step 3</strong></label></center>
+				<div class="card-body">
+					<p class="card-text" align="center">Click the button to generate the questions.</p>
+				</div>
+			</div>
+
+			<div class="card col-md-2" style="margin: 40px;">
+				<div style="padding: 5%;" align="center">
+					<img class="card-img-top home-card-icon" src="{% static 'images/icons/print_icon.png' %}">
+				</div>
+				<div role="separator" class="dropdown-divider"></div>
+				<center><label><strong>Step 4</strong></label></center>
+				<div class="card-body">
+					<p class="card-text" align="center">Print the generated question.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="genque" class="container-fluid" style="padding: 3%; background-color:#007c77; ">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-md-12" style="padding-bottom: 3%;">
+					<center>
+						<h1>Make Questions</h1>
+						<h2>Let's start</h2>
+					</center>
+				</div>
+
+				<form class="col-md-12" action="/generate/" method="post" enctype="multipart/form-data"> {% csrf_token %}
+					
+					
+					<div class="col-md-7" style="margin-bottom: 3%;" >
+						<h3>Step 1: Upload File</h3>
+							<label class="custom-file" style="width: 530px; min-width: 30%;">
+								<input class="custom-file-input" id="file" type="file" name="file" accept=".pdf, /*">
+								<span id="upload_file" class="custom-file-control">
+								</span>
+							</label>
+					</div>
+
+					<div class="col-md-12" style="padding-bottom: 3%; ">
+						<h3 style="padding-bottom: 1%;">Step 2: Settings</h3>
+						<h5> <small> (Specify the page number) </small></h5>
+
+							<div class="col-md-6 input-group" style="margin:1%; margin-left: 0;">
+								<span class="input-group-addon" style="	background-color: #efefef;" >
+									<h6><strong>Page: </strong></h6>
+									<input id="pageFrom" type="number" name="pageFrom" value="1" style="text-align: center;" >
+								</span>
+								
+								<span class="input-group-addon" style="	background-color: #efefef;">
+									<h6><strong>to </strong></h6>
+									<input  id="pageTo" type="number" name="pageTo" value="" style="text-align: center;" >
+								</span>
+							
+							</div>
+							<div class="col-md-6 form-group" align="right">
+								<button id="btn_generate" name="btn_generate" class="btn btn-success float-right">Generate <span class="ion-ios-gear"> </span></button>
+							</div>
+					</div>
+
+
+					{% if messages %}
+					<div class="messages col-md-6" style="margin-top: 1%;">
+					    {% for message in messages %}
+					    <div{% if message.tags %} class="alert alert-success {{ message.tags }}" role="alert" {% endif %}>
+						  	<strong>Well done!</strong> {{ message }}
+						</div>
+					    {% endfor %}
+					</div>
+					{% endif %}
+
+				</form>
+			</div>
+		</div>
+		
+	</div>
+
+</div>
+
+{% include "genque/footer.html" %}
+{% endblock %}

@@ -1,0 +1,63 @@
+.btn-circle-lg {
+  width: 79px;
+  height: 79px;
+  text-align: center;
+  padding: 13px 0;
+  font-size: 15px;
+  line-height: 2.00;
+  border-radius: 70px;
+}
+.printMe{
+  color: white;
+}
+.printMe:hover {
+  text-decoration: none;
+}
+@include media-breakpoint-up(sm) {
+  html {
+    font-size: 16px;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  html {
+    font-size: 20px;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  html {
+    font-size: 28px;
+  }
+}
+
+@media (min-width: 768px) { .navbar-collapse.in{ overflow-y:visible;} }
+
+
+/* Input File*/
+.custom-file-input:hover{
+  cursor: pointer;
+}
+/* Before*/
+.custom-file-control:before {
+    content: "Browse";
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+    z-index: 6;
+    display: block;
+    height: 2.5rem;
+    padding: .5rem 1rem;
+    line-height: 1.5;
+    color: #464a4c;
+    background-color: #eceeef;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 0 .25rem .25rem 0;
+}
+
+/* After*/
+.custom-file-control:after {
+    content: "Choose file...";
+}
+

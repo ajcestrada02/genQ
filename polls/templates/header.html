@@ -1,0 +1,83 @@
+<!DOCTYPE>
+<html lang="en">
+  <head>
+    <!-- Adding Page title and logo -->
+    <title>GenQue</title>
+    <link rel="icon" type="image/gif" href="http://localhost/Front/assets/images/page _logo.png" />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% load staticfiles %}
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+
+
+    <!-- Importing Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}">
+
+    <!-- Importin CDN-->  
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script type="text/javascript" src="<?= base_url('../Front/assets/'); ?>js/bootstrap.min.js"></script>
+
+    <!-- Importing Home jQuery file -->
+    <script type="text/javascript" src="{% static 'js/home.js' %} "></script>
+  </head>
+
+<body>
+
+<nav id="navbar" class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="#" style="width: 200px;"><img src="http://localhost/Front/assets/images/web_logo.png" width=200px" height="40px"></a>
+
+  <ul class="nav nav-pills ">
+    <li class="nav-item">
+      <a class="nav-link" href="#abouts">Abouts</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#tutorial">Tutorial</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#genque">Make Questions</a>
+    </li>
+
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" href="#" aria-haspopup="true" aria-expanded="true">Login</a>
+
+      <ul class="dropdown-menu" style="right: 0; left: auto; width: 320px;">
+        <div class="dropdown-item">
+          <form>
+            <div class="form-group">
+              <label>Email:</label>
+              <input type="Email" class="form-control" name="email" id="emailTA" placeholder="Enter your email">
+            </div> 
+            <div class="form-group">
+              <label>Password:</label>
+              <input type="Password" class="form-control" name="password" id="passwordTA" placeholder="Enter your password">
+            </div>
+
+            <div role="separator" class="dropdown-divider"></div>
+
+            <div class="form-group">
+                <div class="row">
+                  <div class="container">
+                     <input type="submit" class="form-control col-md-4 btn-success float-right" name="login" value="Login">
+                     <button class="form-control col-md-4 float-left">Sign up</button>
+                  </div>
+                </div>
+            </div>
+
+          </form>
+
+        </div>
+
+      </ul>
+
+    </li>
+
+  </ul>
+
+</nav>

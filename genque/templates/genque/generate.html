@@ -1,0 +1,278 @@
+{% extends "genque/header.html" %}
+{% block content %}
+
+<div class="container" style="padding: 3%;">
+	<div class="row">
+
+		<div class="col-md-12">
+			<center>
+				<h1 style="color: #101818;">Statistical Report</h1>
+				<h1 class="text-muted">Topic Gathered</h1>
+			</center>
+		</div>
+
+		<div class="col-md-12">
+			<dl class="row" style="padding-right: 3%; padding-left: 3%;" >
+				<dt class="col-md-2" style="padding: 1%; ">File Name:</dt>
+				<dd class="col-md-10" style="padding: 1%; text-align: justify; ">{{filename}}</dd>
+
+				<dt class="col-md-2" style="padding: 1%; ">Processed Time:</dt>
+				<dd class="col-md-10" style="padding: 1%; text-align: justify; ">{{time}} <small class="text-muted">(HH:MM:SS)</small></dd>
+
+				<dt class="col-md-2" style="padding: 1%; ">Description:</dt>
+				<dd class="col-md-10" style="padding: 1%; text-align: justify; ">Statistical Report is the data gathered from unstructured text that manipulates by the system. This report shows the frequency of every topic in text including the bar graph of the precision,recall, and f-measure for accuracy testing purposes.</dd>
+
+			</dl>
+		</div>
+
+		<div class="col-md-6">
+			<center><small class="text-muted" >(Hover the bar to determine exact number.)</small></center>
+			<div class="row align-items-start">
+					
+					<canvas id="IE_Chart" style="max-width: 500px; max-height: 500px; min-height: 300px !important;"></canvas>
+			    	<script>
+					var ctx = document.getElementById("IE_Chart").getContext('2d');
+					var IE_Chart = new Chart(ctx, {
+					    type: 'bar',
+					    data: {
+					        labels: ["PERSON", "ORGANIZATION", "LOCATION", "DATE", "EVENT"],
+					        datasets: [{
+					            label: 'Information Extraction Data',
+					            data: [{{len_PERSON}},{{len_ORG}},{{len_GPE_LOCATION}},{{len_DATE}},{{len_EVENT}}],
+					            backgroundColor: [
+					                'rgba(255, 99, 132, 0.2)',
+					                'rgba(54, 162, 235, 0.2)',
+					                'rgba(255, 206, 86, 0.2)',
+					                'rgba(75, 192, 192, 0.2)',
+					                'rgba(255, 159, 64, 0.2)'
+					            ],
+					            borderColor: [
+					                'rgba(255,99,132,1)',
+					                'rgba(54, 162, 235, 1)',
+					                'rgba(255, 206, 86, 1)',
+					                'rgba(75, 192, 192, 1)',
+					                'rgba(255, 159, 64, 1)'
+					            ],
+					            borderWidth: 1
+					        }]
+					    },
+					    options: {
+					        scales: {
+					            yAxes: [{
+	            					 beginAtZero:true
+					            }]
+					        }
+					    }
+					});
+					</script>
+				
+			</div>
+
+			<div class="row align-items-end;">
+			
+					<canvas id="ACC_Chart" style=" max-width: 500px; max-height: 500px; min-height: 300px !important;"><small class="text-muted" >(Hover the bar to determine exact number.)</small></canvas>
+			    	<script>
+					var ctx = document.getElementById("ACC_Chart").getContext('2d');
+					var ACC_Chart = new Chart(ctx, {
+					    type: 'bar',
+					    data: {
+					        labels: ["PRECISION", "RECALL", "F-MEASURE"],
+					        datasets: [{
+					            label: 'Evaluation Data Report',
+					            data: [{{accuracy.0}},{{accuracy.1}},{{accuracy.2}}],
+					            backgroundColor: [
+					                'rgba(255, 206, 86, 0.2)',
+					                'rgba(75, 192, 192, 0.2)',
+					                'rgba(255, 159, 64, 0.2)'
+					            ],
+					            borderColor: [
+					                'rgba(255, 206, 86, 1)',
+					                'rgba(75, 192, 192, 1)',
+					                'rgba(255, 159, 64, 1)'
+					            ],
+					            borderWidth: 1
+					        }]
+					    },
+					    options: {
+					        scales: {
+					            yAxes: [{
+					                ticks: {
+					                    beginAtZero:true
+					                }
+					            }]
+					        }
+					    }
+					});
+					</script>
+				
+			</div>
+		</div>
+
+		<div class="col-md-6" style="max-width: 500px; max-height: 600px; min-height: 300px; height: 600px !important; overflow: scroll;"  >
+			<center>
+				<h6>Topic collected with label</h6>
+				<table class="table table-reponsive">
+					<thead class="table-info">
+						<tr>
+							<th>#</th>
+							<th>WORD</th>
+							<th>LABEL</th>
+						</tr>
+					</thead>
+					<tbody class="table-striped table-inverse">
+
+						{% for i in PERSON %}
+							<tr>
+								<td><strong>{{forloop.counter}}</strong></td>
+								<td>{{i}}</td>
+								<td>PERSON</td>
+							</tr>
+						{% endfor %}
+
+						{% for i in ORG %}
+							<tr>
+								<td><strong>{{forloop.counter}}</strong></td>
+								<td>{{i}}</td>
+								<td>ORG</td>
+							</tr>
+						{% endfor %}
+
+						{% for i in GPE_LOCATION %}
+							<tr>
+								<td><strong>{{forloop.counter}}</strong></td>
+								<td>{{i}}</td>
+								<td>LOCATION</td>
+							</tr>
+						{% endfor %}
+
+						{% for i in DATE %}
+							<tr>
+								<td><strong>{{forloop.counter}}</strong></td>
+								<td>{{i}}</td>
+								<td>DATE</td>
+							</tr>
+						{% endfor %}
+
+						{% for i in EVENT %}
+							<tr>
+								<td><strong>{{forloop.counter}}</strong></td>
+								<td>{{i}}</td>
+								<td>EVENT</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</center>
+		</div>
+
+		
+		<form action="{% url 'download' %}" method="GET">
+			<div class="col-md-12" style="margin-top: 2%;">
+					<table class="table table-bordered table-reponsive">
+						<thead ">
+							<tr align="center">
+								<th class="table-info"><h3>Generated Questions</h3></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="table-active"><strong>Fill-in-the-Blanks</strong></td>
+							</tr>
+							{% for finb in question_finb %}
+								<tr>
+									<td>
+										<label class="custom-control custom-checkbox">
+											<input class="custom-control-input" type="checkbox" name="finb_item" value="{{finb}}"><strong></strong> 
+											<span class="custom-control-indicator"></span>
+											<span class="custom-control-description"><strong>{{forloop.counter}}. </strong>{{finb}}</span>
+										</label>
+										{% for ans in question_finb_key %}
+											{% if forloop.counter == forloop.parentloop.counter %}
+												<h6 style="margin-left: 2%"><strong>ANSWER: {{ans}} </strong></h6>
+											{% endif %}
+										{% endfor%}
+									</td>
+								</tr>
+							{% endfor %}
+							<tr>
+								<td class="table-active"><strong>True or False</strong></td>
+							</tr>
+							{% for tf in question_tf %}
+								<tr>
+									<td>
+										<label class="custom-control custom-checkbox">
+											<input class="custom-control-input" type="checkbox" name="tf_item" value="{{tf}}">
+											<span class="custom-control-indicator"></span>
+											<span class="custom-control-description"><strong>{{forloop.counter}}. </strong> {{tf}}</span>
+
+										</label>
+										{% for ans in question_tf_key%}
+											{% if forloop.counter == forloop.parentloop.counter%}
+												<h6 style="margin-left: 2%"><strong>ANSWER: {{ans}}</strong></h6>
+											{% endif %}
+										{% endfor%}
+									</td>
+								</tr>
+							{% endfor %}
+							<tr>
+								<td class="table-active"><strong>Multiple Choices</strong></td>
+							</tr>
+							
+							{% for mcq in question_mcq %}
+								<tr>
+									<td>
+										<label class="custom-control custom-checkbox">
+											<input class="custom-control-input" type="checkbox" name="mcq_item" value="{{forloop.counter}},{{mcq}}">
+											<span class="custom-control-indicator"></span>
+											<span class="custom-control-description"><strong>{{forloop.counter}}. </strong>{{mcq}}  </span>
+											<br>
+										</label>
+
+								{% for ans in question_mcq_key%}	
+									{% if forloop.counter == forloop.parentloop.counter%}
+										<h6 style="margin-left: 2%"><strong>ANSWER: {{ans}}</strong></h6>
+									{% endif %}
+								{% endfor%}
+
+								{% for key in question_mcq_choices %}
+									{% if forloop.counter == forloop.parentloop.counter%}
+									<input type="text" name="mcq_item_choices" value="{{forloop.parentloop.counter}},{{key}}" hidden="True">
+									<div class="container" style="margin-left: 2%;">
+										<li style="list-style-type:none;">a.) {{key.0}}</li>
+										<li style="list-style-type:none;">b.) {{key.1}}</li>
+										<li style="list-style-type:none;">c.) {{key.2}}</li>
+									</div>
+									{% endif %}
+								{% endfor %}
+									</td>
+								</tr>
+							{% endfor %}
+							
+						</tbody>
+					</table>
+			</div>
+			<div class="col-md-12">
+				<center>
+					<a href="{% url 'download' %}">
+						<button class="btn btn-lg btn-primary">
+							<span class="ion-ios-download-outline"></span> Download
+						</button>
+					</a>
+				</center>
+			</div>
+
+		</form>
+		<div class="col-md-12" style="margin-top: 1%;">
+				<center>
+					<a href="{% url 'index' %}">
+						<button class="btn btn-lg btn-success">
+							<span class="ion-reply"></span> Generate Again
+						</button>
+					</a>
+				</center>
+			</div>
+	</div>
+</div>
+		
+{% include "genque/footer.html" %}
+{% endblock %}
